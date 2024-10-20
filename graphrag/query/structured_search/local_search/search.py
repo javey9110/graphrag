@@ -63,6 +63,8 @@ class LocalSearch(BaseSearch):
         """Build local search context that fits a single context window and generate answer for the user query."""
         start_time = time.time()
         search_prompt = ""
+        if query.split("<|system_prompt|>")[1]:
+            search_prompt = query.split("<|system_prompt|>")[1]
 
         context_text, context_records = self.context_builder.build_context(
             query=query,
